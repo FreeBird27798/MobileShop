@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "182115256721",
+    "project_id": "connect-app-2e63a",
+    "storage_bucket": "connect-app-2e63a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182115256721:android:66fb3b77c628974df2b230",
+        "android_client_info": {
+          "package_name": "com.ggateway.taj.connect_store.connect_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "182115256721-j5fnb8h9740ob2pdad4jufbi6t302i9e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqbhyo3SYKjuPgfwsawHHpXz4CcqPvTbQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "182115256721-j5fnb8h9740ob2pdad4jufbi6t302i9e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
