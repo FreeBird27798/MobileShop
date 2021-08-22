@@ -1,6 +1,6 @@
 import 'package:connect_store/getx_controllers/city_getx_controller.dart';
 import 'package:connect_store/getx_controllers/user_getx_controller.dart';
-import 'package:connect_store/mixins/helpers.dart';
+import 'package:connect_store/utils/helpers.dart';
 import 'package:connect_store/models/city.dart';
 import 'package:connect_store/models/user.dart';
 import 'package:connect_store/storage/preferences/app_pref_controller.dart';

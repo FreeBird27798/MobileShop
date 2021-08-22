@@ -2,6 +2,7 @@ import 'package:connect_store/getx_controllers/product_getx_controller.dart';
 import 'package:connect_store/models/product.dart';
 import 'package:connect_store/storage/preferences/app_pref_controller.dart';
 import 'package:connect_store/ui/screens/product/product_details_screen.dart';
+import 'package:connect_store/ui/widgets/star.dart';
 import 'package:connect_store/utils/app_colors.dart';
 import 'package:connect_store/utils/size_config.dart';
 import 'package:connect_store/ui/widgets/rate_widget.dart';
@@ -79,8 +80,8 @@ class _ProductItemState extends State<ProductItem> {
                   SizedBox(
                     height: SizeConfig().scaleHeight(8),
                   ),
-                  RateWidget(
-                    val: widget.currentProduct.productRate!,
+                  Star(
+                    isRated: widget.currentProduct.overalRate != null,
                   ),
                 ],
               ),
@@ -104,7 +105,8 @@ class _ProductItemState extends State<ProductItem> {
     await _productGetxController.addRemoveToFavorite(
         context: context, currentProduct: widget.currentProduct);
     setState(() {
-      widget.currentProduct.isFavorite = _productGetxController.product.value!.isFavorite;
+      widget.currentProduct.isFavorite =
+          _productGetxController.product.value!.isFavorite;
     });
   }
 

@@ -2,6 +2,7 @@ import 'package:connect_store/getx_controllers/cart_getx_controller.dart';
 import 'package:connect_store/models/cart.dart';
 import 'package:connect_store/models/product.dart';
 import 'package:connect_store/storage/preferences/app_pref_controller.dart';
+import 'package:connect_store/ui/widgets/star.dart';
 import 'package:connect_store/utils/app_colors.dart';
 import 'package:connect_store/utils/size_config.dart';
 import 'package:connect_store/ui/widgets/app_elevated_button.dart';
@@ -21,7 +22,9 @@ class LatestProductItem extends StatelessWidget {
     required this.currentProduct,
     required this.context,
   });
+
   final _cartGetxController = Get.put(CartGetxController());
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -67,8 +70,8 @@ class LatestProductItem extends StatelessWidget {
               SizedBox(
                 height: SizeConfig().scaleHeight(8),
               ),
-              RateWidget(
-                val: currentProduct.productRate!,
+              Star(
+                isRated: currentProduct.overalRate != null,
               ),
             ],
           ),
@@ -82,16 +85,13 @@ class LatestProductItem extends StatelessWidget {
               enabled: true,
               text: AppLocalizations.of(context)!.add_to_cart,
               onPressed: () async =>
-              await _cartGetxController
-                  .createCartItem(cart),
+                  await _cartGetxController.createCartItem(cart),
             ),
           ),
         ],
       ),
     );
   }
-
-
 
   Cart get cart {
     Product product = currentProduct;
@@ -101,7 +101,7 @@ class LatestProductItem extends StatelessWidget {
     cart.price = product.price;
     cart.nameEn = product.nameEn;
     cart.nameAr = product.nameAr;
-    cart.quantity =product.quantity;
+    cart.quantity = product.quantity;
     return cart;
   }
 }
