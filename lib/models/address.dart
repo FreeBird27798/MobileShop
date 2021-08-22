@@ -10,6 +10,7 @@ class Address {
   double? lang;
   City? city;
 
+
   Address();
 
   Address.fromJson(Map<String, dynamic> json) {

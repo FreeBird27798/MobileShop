@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:connect_store/mixins/api_mixin.dart';
-import 'package:connect_store/mixins/helpers.dart';
-import 'package:connect_store/models/cart_order.dart';
+import 'package:connect_store/utils/helpers.dart';
 import 'package:connect_store/models/order.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -11,10 +10,15 @@ import 'api_settings.dart';
 class OrderApiController with ApiMixin, Helpers {
   Future<bool> createOrder({
     required BuildContext context,
-    required List<CartOrder> cart,
+    required String cart,
     required String paymentType,
     required int addressId,
     required int cardId,
+    required String holderName,
+    required String cardNumber,
+    required String expDate,
+    required String cvv,
+    required String type,
   }) async {
     var response = await http.post(
       getUrl(ApiSettings.ORDERS),
@@ -24,6 +28,11 @@ class OrderApiController with ApiMixin, Helpers {
         ApiSettings.PAYMENT_TYPE: paymentType,
         ApiSettings.ADDRESS_ID: addressId.toString(),
         ApiSettings.CARD_ID: cardId.toString(),
+        ApiSettings.HOLDER_NAME: holderName,
+        ApiSettings.CARD_NUMBER: cardNumber,
+        ApiSettings.EXP_DATE: expDate,
+        ApiSettings.CVV: cvv,
+        ApiSettings.TYPE: type,
       },
     );
     if (isSuccessRequest(response.statusCode)) {

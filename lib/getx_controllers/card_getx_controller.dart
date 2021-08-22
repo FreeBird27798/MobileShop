@@ -3,15 +3,12 @@ import 'package:connect_store/models/card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-
 class CardGetxController extends GetxController {
   final CardApiController cardApiController = CardApiController();
   RxList<MyCard> cards = <MyCard>[].obs;
   RxBool loading = false.obs;
 
   static CardGetxController get to => Get.find();
-
 
   Future<void> getCards() async {
     loading.value = true;
@@ -26,8 +23,10 @@ class CardGetxController extends GetxController {
     cards.refresh();
   }
 
-  Future<bool> createCard({required BuildContext context, required MyCard card}) async {
-    MyCard? newCard = await cardApiController.createCard(context: context,
+  Future<bool> createCard(
+      {required BuildContext context, required MyCard card}) async {
+    MyCard? newCard = await cardApiController.createCard(
+        context: context,
         holderName: card.holderName,
         cardNumber: card.cardNumber,
         expDate: card.expDate,
@@ -42,10 +41,25 @@ class CardGetxController extends GetxController {
     return false;
   }
 
-  Future<bool> updateCard({required BuildContext context, required MyCard card}) async {
-    bool? status = await cardApiController.updateCard(context: context,card: card);
+  Future<bool> updateCard(
+      {required BuildContext context, required MyCard card}) async {
+    bool? status =
+        await cardApiController.updateCard(context: context, card: card);
     if (status) {
       cards.add(card);
+      cards.refresh();
+      update();
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> deleteCard(
+      {required BuildContext context, required int cardId}) async {
+    bool? deleted =
+        await cardApiController.deleteCard(context: context, cardId: cardId);
+    if (deleted) {
+      cards.removeWhere((e) => e.id == cardId);
       cards.refresh();
       update();
       return true;

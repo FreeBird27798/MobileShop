@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:connect_store/mixins/api_mixin.dart';
-import 'package:connect_store/mixins/helpers.dart';
+import 'package:connect_store/utils/helpers.dart';
 import 'package:connect_store/models/address.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;

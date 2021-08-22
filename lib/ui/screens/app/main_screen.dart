@@ -37,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().designWidth(3.75).designHeight(8.12).init(context);
-    setTitle(0);
+    // setTitle(0);
     return GetX(
       init: BnGetxController(),
       builder: (BnGetxController controller) {
@@ -86,8 +86,8 @@ class _MainScreenState extends State<MainScreen> {
             padding: EdgeInsetsDirectional.only(
               top: SizeConfig().scaleHeight(25),
               // bottom: SizeConfig().scaleHeight(25),
-              start: SizeConfig().scaleWidth(25),
-              end: SizeConfig().scaleWidth(25),
+              start: controller.index != 1 ? SizeConfig().scaleWidth(25) : 0,
+              end: controller.index != 1 ? SizeConfig().scaleWidth(25) : 0,
             ),
             child: controller.screen,
           ),

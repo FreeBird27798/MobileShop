@@ -1,5 +1,5 @@
 import 'package:connect_store/getx_controllers/card_getx_controller.dart';
-import 'package:connect_store/mixins/helpers.dart';
+import 'package:connect_store/utils/helpers.dart';
 import 'package:connect_store/models/card.dart';
 import 'package:connect_store/ui/widgets/app_elevated_button.dart';
 import 'package:connect_store/ui/widgets/app_text.dart';
@@ -57,7 +57,7 @@ class _CreateCreditCardState extends State<CreateCreditCard> with Helpers {
                 cardHolderName: cardHolderName,
                 cvvCode: cvvCode,
                 expiryDate: expiryDate,
-                flag: flag,
+                flag: flag,onLongPress: null,
               ),
               Expanded(
                 child: ListView(

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:connect_store/mixins/api_mixin.dart';
-import 'package:connect_store/mixins/helpers.dart';
+import 'package:connect_store/utils/helpers.dart';
 import 'package:connect_store/models/card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -86,7 +86,6 @@ class CardApiController with ApiMixin,Helpers{
       getUrl(ApiSettings.PAYMENT_CARDS + '/$cardId'),
       headers: requestHeaders,
     );
-
     if (isSuccessRequest(response.statusCode)) {
       var message = jsonDecode(response.body)['message'];
       showSnackBar(context: context, message:message );

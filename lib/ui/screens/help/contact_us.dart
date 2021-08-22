@@ -1,5 +1,5 @@
 import 'package:connect_store/getx_controllers/user_getx_controller.dart';
-import 'package:connect_store/mixins/helpers.dart';
+import 'package:connect_store/utils/helpers.dart';
 import 'package:connect_store/ui/widgets/app_elevated_button.dart';
 import 'package:connect_store/ui/widgets/app_text.dart';
 import 'package:connect_store/ui/widgets/app_text_field.dart';

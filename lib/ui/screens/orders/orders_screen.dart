@@ -2,7 +2,9 @@ import 'package:connect_store/getx_controllers/order_getx_controller.dart';
 import 'package:connect_store/ui/widgets/app_text.dart';
 import 'package:connect_store/ui/widgets/circular_progress.dart';
 import 'package:connect_store/ui/widgets/empty_data.dart';
+import 'package:connect_store/ui/widgets/order_item.dart';
 import 'package:connect_store/utils/app_colors.dart';
+import 'package:connect_store/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -45,7 +47,21 @@ class _OrdersScreenState extends State<OrdersScreen> {
           //     ? CircularProgress()
           //     :
           controller.orders.isNotEmpty
-              ? Container()
+              ? Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: SizeConfig().scaleWidth(30),
+                      vertical: SizeConfig().scaleHeight(10)),
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: controller.orders.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return OrderItem(
+                        order: controller.orders[index],
+                      );
+                    },
+                  ),
+                )
               : EmptyData(
                   text: 'No Orders Yet!',
                 ),

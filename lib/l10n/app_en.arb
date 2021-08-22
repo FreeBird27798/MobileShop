@@ -167,7 +167,7 @@
   "no": "NO",
   "info": "INFO",
   "add": "Add",
-  "dialog_title": "Delete Address",
-  "dialog_message": "Are you sure you want to delete this Address?",
+  "dialog_title": "DELETE",
+  "dialog_message": "Are you sure you want to delete this Item?",
   "no_cards": "No Cards!"
 }

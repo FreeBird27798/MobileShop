@@ -51,6 +51,7 @@ class PaymentCardsScreen extends StatelessWidget {
                               popScreen(card: controller.cards[index]);
                             },
                             child: MyCardItem(
+                              cardId: controller.cards[index].id,
                               expiryDate: controller.cards[index].expDate,
                               flag: false,
                               cardHolderName:

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:connect_store/mixins/api_mixin.dart';
-import 'package:connect_store/mixins/helpers.dart';
+import 'package:connect_store/utils/helpers.dart';
 import 'package:connect_store/models/base_generic_json_array_respone.dart';
 import 'package:connect_store/models/faq.dart';
 import 'package:connect_store/models/user.dart';

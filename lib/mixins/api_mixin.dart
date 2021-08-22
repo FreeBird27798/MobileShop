@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:connect_store/api/api_settings.dart';
+import 'package:connect_store/storage/preferences/app_pref_controller.dart';
 import 'package:connect_store/storage/preferences/user_pref_controller.dart';
+import 'package:connect_store/utils/helpers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
-
-import 'helpers.dart';
 
 mixin ApiMixin implements Helpers {
   Uri getUrl(String url) {
@@ -33,7 +34,8 @@ mixin ApiMixin implements Helpers {
   Map<String, String> get requestHeaders {
     return {
       HttpHeaders.authorizationHeader: UserPrefController().token,
-      'X-Requested-With': 'XMLHttpRequest'
+      'X-Requested-With': 'XMLHttpRequest',
+      ApiSettings.LANG:AppPrefController().languageCode
     };
   }
 }

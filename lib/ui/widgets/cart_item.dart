@@ -1,5 +1,5 @@
+import 'package:connect_store/getx_controllers/cart_getx_controller.dart';
 import 'package:connect_store/models/cart.dart';
-import 'package:connect_store/ui/widgets/app_elevated_button.dart';
 import 'package:connect_store/utils/app_colors.dart';
 import 'package:connect_store/utils/size_config.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,11 +10,21 @@ import 'app_text.dart';
 
 class CartItem extends StatefulWidget {
   final Cart cart;
+
+  // final BuildContext context;
   final void Function() onDeleteTap;
   final void Function() onTap;
+  final void Function() onIncrease;
+  final void Function() onDecrease;
+  double total = 1;
 
   CartItem(
-      {required this.cart, required this.onTap, required this.onDeleteTap});
+      {required this.cart,
+      required this.onTap,
+      required this.onDeleteTap,
+      required this.onIncrease,
+      required this.onDecrease,
+      required this.total});
 
   @override
   _CartItemState createState() => _CartItemState();
@@ -26,6 +36,7 @@ class _CartItemState extends State<CartItem> {
 
   @override
   Widget build(BuildContext context) {
+    double _totalPrice = widget.cart.price * _quantity;
     return Slidable(
       actionPane: SlidableDrawerActionPane(),
       actionExtentRatio: 0.25,
@@ -74,14 +85,13 @@ class _CartItemState extends State<CartItem> {
                       ),
                       SizedBox(height: 8),
                       AppText(
-                        text: 'Quantity: ${widget.cart.quantity} Pcs',
+                        text: 'Quantity:$_quantity Pcs',
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
                       ),
                       SizedBox(height: 8),
                       AppText(
-                        text:
-                            'Total Price: : ${widget.cart.price * widget.cart.quantity}',
+                        text: 'Total Price: : $_totalPrice',
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
                       ),
@@ -99,10 +109,16 @@ class _CartItemState extends State<CartItem> {
                 value: _value,
                 activeColor: AppColors.APP_GREEN_PRIMARY_COLOR,
                 onChanged: (bool? value) {
-                  if (value != null)
+                  if (value != null) {
                     setState(() {
                       _value = value;
                     });
+                  }
+                  if (_value == false) {
+                    setState(() {
+                      _quantity = 0;
+                    });
+                  }
                 },
               ),
             ),
@@ -124,7 +140,8 @@ class _CartItemState extends State<CartItem> {
               color: Colors.white,
             ),
           ),
-          onTap: () => widget.onDeleteTap,
+          onTap: () async =>
+              await deleteItem(cartItem: widget.cart, context: context),
         ),
       ],
       secondaryActions: <Widget>[
@@ -179,9 +196,13 @@ class _CartItemState extends State<CartItem> {
 
   increaseQuantity() {
     setState(() {
-      _quantity += 1;
+      // if (_quantity <= widget.cart.quantity) {
+      _quantity = _quantity + 1;
       widget.cart.quantity = _quantity;
+      widget.total += widget.cart.price * _quantity;
+      // }
     });
+    widget.onIncrease();
   }
 
   decreaseQuantity() {
@@ -189,7 +210,13 @@ class _CartItemState extends State<CartItem> {
       if (_quantity != 1) {
         _quantity = _quantity - 1;
         widget.cart.quantity = _quantity;
+        widget.total -= widget.cart.price * _quantity;
       }
     });
+    widget.onDecrease();
+  }
+
+  deleteItem({required Cart cartItem, required BuildContext context}) async {
+    return await CartGetxController.to.deleteCartItem(cartItem.id);
   }
 }

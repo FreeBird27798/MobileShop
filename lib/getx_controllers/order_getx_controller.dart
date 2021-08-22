@@ -13,7 +13,11 @@ class OrderGetxController extends GetxController {
 
   Future<void> getOrders() async {
     loading.value = true;
-    orders.value = await orderApiController.getAllOrders();
+    List<Order> myOrders = await orderApiController.getAllOrders();
+    if (myOrders.isNotEmpty || myOrders != null) {
+      orders.value = myOrders;
+    }
+    // orders.refresh();
     loading.value = false;
     update();
   }
@@ -26,10 +30,15 @@ class OrderGetxController extends GetxController {
 
   Future<bool> createOrder({
     required BuildContext context,
-    required List<CartOrder> cart,
+    required String cart,
     required String paymentType,
     required int addressId,
     required int cardId,
+    required String holderName,
+    required String cardNumber,
+    required String expDate,
+    required String cvv,
+    required String type,
   }) async {
     bool isAdded = await orderApiController.createOrder(
       context: context,
@@ -37,6 +46,11 @@ class OrderGetxController extends GetxController {
       paymentType: paymentType,
       addressId: addressId,
       cardId: cardId,
+      holderName: holderName,
+      cardNumber: cardNumber,
+      expDate: expDate,
+      cvv: cvv,
+      type: type,
     );
     if (isAdded) {
       return true;

@@ -1,5 +1,5 @@
 import 'package:connect_store/getx_controllers/address_getx_controller.dart';
-import 'package:connect_store/mixins/helpers.dart';
+import 'package:connect_store/utils/helpers.dart';
 import 'package:connect_store/models/address.dart';
 import 'package:connect_store/storage/preferences/user_pref_controller.dart';
 import 'package:connect_store/ui/widgets/app_elevated_button.dart';
