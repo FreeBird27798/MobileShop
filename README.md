@@ -1,6 +1,6 @@
-# connect_store
+# mobile_shop
 
-A new Flutter project.
+A new Mobile Shop Flutter project.
 
 ## Getting Started
 
